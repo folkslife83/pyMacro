@@ -1,0 +1,12 @@
+if pyautogui.locateOnScreen(h1) :
+    print("heart")
+    pyautogui.click(h1)
+else:
+    pyautogui.click((90,601))
+    time.sleep(1)
+    pyautogui.typewrite(['pagedown'])
+    pyautogui.typewrite(['pagedown'])
+    pyautogui.typewrite(['pagedown'])
+
+
+folder로 열고 git 업하기 전에 vscode 폴더 지우기
