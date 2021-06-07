@@ -31,3 +31,4 @@ def icon():
         time.sleep(0.2)
         pyautogui.typewrite(['pagedown'])
         cnt += 1
+icon()

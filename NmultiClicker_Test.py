@@ -11,15 +11,12 @@ def mult(num):
     pyautogui.typewrite(['home'])
 
     for i in range(num):
-        NiconClicker.icon()
-        time.sleep(0.5)
-        Nheart.heart()
-
+        NiconClicker.icon()        
         pyautogui.click((3,500))
         pyautogui.hotkey('ctrl','w')
 
 
-
+mult(10)
 
 
 
