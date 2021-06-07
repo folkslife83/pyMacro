@@ -11,11 +11,12 @@ def mult(num):
     pyautogui.click((3,500))
     time.sleep(0.2)
     pyautogui.typewrite(['home'])
+    heartMax = 20 #맥스 활동량, 클릭, pgdn 합계
 
     for i in range(num):
         NiconClicker.icon()
         time.sleep(0.5)
-        Nheart.heart()
+        Nheart.heart(heartMax)
 
         pyautogui.click((3,500))
         pyautogui.hotkey('ctrl','w')
