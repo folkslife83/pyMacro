@@ -4,6 +4,9 @@ folder로 열고 git 업하기 전에 vscode 폴더 지우기
 var x, y; document.onmousemove=(e)=>{x=e.pageX;y=e.pageY;}
 console.log(x, y);
 
+https://shgl.tistory.com/21
+실행파일 만들기
+
 if pyautogui.locateOnScreen(h1) :
     print("heart")
     pyautogui.click(h1)
