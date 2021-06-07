@@ -1,16 +1,19 @@
 import pyautogui
 import time
+import random
 
 
-def heart():
+def heart(numHeart, numPages):
     
-    ranT = 0
-    cnt = 0
-    heart = 0
-    cntMax = 5
+    cnt_h = 0
+    cnt_p = 0
+    heartTotal = 0
+    cntH = numHeart
+    cntP = numPages
 
-    while cnt< cntMax:
+    while cnt_h < cntH and cnt_p < cntP :
         pyautogui.click((1200,500))
+  
         h1 = pyautogui.locateAllOnScreen('images/nH.png', grayscale=True)
         h2 = pyautogui.locateAllOnScreen('images/nHH.png', grayscale=True)   
 
@@ -18,13 +21,17 @@ def heart():
         hrt.sort(key=lambda x:x[1])
         for h in hrt:
             pyautogui.moveTo(h)
-            time.sleep(0.5)
-
-        #time.sleep(ranT)
+            #pyautogui.click(h)
+            time.sleep(random.random()) #0과 1사이값
+            heartTotal += 1
+            cnt_h += 1
+        
+    
         pyautogui.click((3,500))
         time.sleep(0.2)
         pyautogui.typewrite(['pagedown'])
         
-        cnt += 1
-    return heart
-heart()
+        cnt_p += 1
+
+    return heartTotal
+heart(5,5)
