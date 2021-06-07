@@ -3,8 +3,10 @@ import time
 import NiconClicker
 import Nheart
 
-def mult(num):
-    
+from tkinter import *
+import tkinter.ttk as ttk
+
+def mult(num):   
     ranT = 0
     pyautogui.click((3,500))
     time.sleep(0.2)
@@ -15,9 +17,25 @@ def mult(num):
         pyautogui.click((3,500))
         pyautogui.hotkey('ctrl','w')
 
+def okClick():
+    num = int(combx.get())
+    mult(num)
 
-mult(10)
+win = Tk()
+win.geometry("300x250+1300+100")
+win.resizable(False,False)
+win.title("execute")
+label=Label(win, text="작업량 선택")
+label.pack()
 
+val = [str(i) for i in (1,5,10,30, 50, 100)]
+combx = ttk.Combobox(win, height=5, values=val)
+combx.set(0)
+combx.pack()
+
+btn = Button(win, text = "실행", overrelief="solid", width=15, command=okClick)
+btn.pack()
+win.mainloop()
 
 
 
