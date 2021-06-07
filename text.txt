@@ -1,3 +1,9 @@
+folder로 열고 git 업하기 전에 vscode 폴더 지우기
+
+구글개발자모드  Console
+var x, y; document.onmousemove=(e)=>{x=e.pageX;y=e.pageY;}
+console.log(x, y);
+
 if pyautogui.locateOnScreen(h1) :
     print("heart")
     pyautogui.click(h1)
@@ -9,4 +15,82 @@ else:
     pyautogui.typewrite(['pagedown'])
 
 
-folder로 열고 git 업하기 전에 vscode 폴더 지우기
+#import Nheart
+import pyautogui
+import time
+
+ranT = 0
+cnt = 0
+cntMax = 3
+lstSwitch = True   #안눌렀으면 True, 눌르면 False
+
+while cnt< cntMax:
+    pyautogui.click((1200,500))    
+    lstIcon = pyautogui.locateOnScreen('images/nListIcon.png', grayscale=True)
+    lstIconB = pyautogui.locateOnScreen('images/nListIconB.png', grayscale=True)
+    
+    if(lstIcon):
+        pyautogui.click(lstIcon)        
+        time.sleep(ranT)
+        break
+    if(lstIconB):        
+        break
+    
+    pyautogui.click((50,500))
+    time.sleep(0.2)
+    pyautogui.typewrite(['pagedown'])
+    cnt += 1
+
+import pyautogui
+import time
+
+ranT = 0
+cnt = 0
+cntMax = 10
+
+while cnt< cntMax:
+    pyautogui.click((1200,500))
+    h1 = pyautogui.locateAllOnScreen('images/nH.png', grayscale=True)
+    h2 = pyautogui.locateAllOnScreen('images/nHH.png', grayscale=True)
+     
+    for im1 in h1:
+        pyautogui.moveTo(im1)
+        #pyautogui.click()
+        cnt += 1
+
+    for im2 in h2:
+        pyautogui.moveTo(im2)
+        #pyautogui.click()
+        cnt += 1
+
+    time.sleep(ranT)
+    pyautogui.click((50,500))
+    time.sleep(0.2)
+    pyautogui.typewrite(['pagedown'])
+    
+    cnt += 1
+
+
+import pyautogui
+import time
+import NiconClicker
+import Nheart
+
+def mult(num):
+    
+    ranT = 0
+    pyautogui.click((50,500))
+    time.sleep(0.2)
+    pyautogui.typewrite(['home'])
+
+    for i in range(num):
+        NiconClicker.icon()
+        time.sleep(0.5)
+        Nheart.heart()
+
+        pyautogui.click((50,500))
+        pyautogui.hotkey('ctrl','w')
+
+mult(1)
+
+
