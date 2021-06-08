@@ -13,4 +13,3 @@ git push
 받을때
 git pull
 
-vscode 열때 폴더로 열기 말고 파일로 열기!

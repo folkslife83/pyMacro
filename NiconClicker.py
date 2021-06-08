@@ -5,6 +5,7 @@ def icon():
 
     cnt = 0
     cntMax = 3
+    confidenceVal = 0.95
 
     pyautogui.click((3,500))
     time.sleep(0.2)
@@ -12,17 +13,14 @@ def icon():
 
     while cnt< cntMax:
         pyautogui.click((1200,500))
-        lstIcon = pyautogui.locateOnScreen('images/nListIcon.png', grayscale=True)
-        lstIcon2 = pyautogui.locateOnScreen('images/nListIcon2.png', grayscale=True)
-        lstIconB = pyautogui.locateOnScreen('images/nListIconB.png', grayscale=True)
+
+        lstIcon = pyautogui.locateOnScreen('images/nListIcon.png', confidence = confidenceVal)
+        lstIconB = pyautogui.locateOnScreen('images/nListIconB.png', confidence = confidenceVal)
         
+   
         if(lstIcon):
             pyautogui.click(lstIcon)                    
-            break
-        
-        if(lstIcon2):
-            pyautogui.click(lstIcon2)                    
-            break
+            break        
 
         if(lstIconB):        
             break
