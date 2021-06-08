@@ -54,7 +54,7 @@ def mult(num1, num2, num3, simul):
 
         pyautogui.click((1,5))
         pyautogui.hotkey('ctrl','w')
-        print(history)
+
 
 
 def okClick():
