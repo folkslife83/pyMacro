@@ -44,16 +44,17 @@ def mult(num1, num2, num3, simul):
     pgMax = num3 #맥스 활동량, 클릭, pgdn 합계
     history = {}
 
-    for i in range(num1):
+    for i in range(num1):       #  i는 key, 나주에 id 값으로 바꿀것
         NiconClicker.icon()
         time.sleep(1)
         if simul:
-            history[i] = Nheart.heartSimul(pgMax, heartMax)
+            history[i] = Nheart.heartSimul(heartMax,pgMax)
         else:
-            Nheart.heart(pgMax, heartMax)
+            history[i] = Nheart.heart(heartMax,pgMax)
 
         pyautogui.click((1,5))
         pyautogui.hotkey('ctrl','w')
+        print(history)
 
 
 def okClick():
@@ -87,7 +88,7 @@ label=Label(win, text="좋아요 최대 클릭수")
 label.pack()
 
 valH = [str(i) for i in (1,3,5, 10)]
-combxH = ttk.Combobox(win, height=5, values=val)
+combxH = ttk.Combobox(win, height=5, values=valH)
 combxH.set(5)
 combxH.pack()
 
@@ -95,7 +96,7 @@ label=Label(win, text="탐색 페이지 수")
 label.pack()
 
 valP = [str(i) for i in (1,3,5, 10,30)]
-combxP = ttk.Combobox(win, height=5, values=val)
+combxP = ttk.Combobox(win, height=5, values=valP)
 combxP.set(10)
 combxP.pack()
 
