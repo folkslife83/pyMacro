@@ -12,12 +12,12 @@ def heart(numHeart, numPages):
     cntP = numPages
 
     while heartTotal < cntH and cnt_p < cntP :
-        pyautogui.click((0,0))
+        pyautogui.click((10,0))
   
   
 
-        h1 = pyautogui.locateAllOnScreen('images/nH.png', confidence = confidenceVal)
-        h2 = pyautogui.locateAllOnScreen('images/nHH.png', confidence = confidenceVal)   
+        h1 = pyautogui.locateAllOnScreen('images/USE/nH.png', confidence = confidenceVal)
+        h2 = pyautogui.locateAllOnScreen('images/USE/nHH.png', confidence = confidenceVal)   
 
         hrt = list(h1) + list(h2)
         hrt.sort(key=lambda x:x[1])
@@ -30,7 +30,7 @@ def heart(numHeart, numPages):
             time.sleep(random.random()) #0과 1사이값
             heartTotal += 1   
 
-        pyautogui.click((2,50))
+        pyautogui.click((10,200))
         time.sleep(0.2)
         pyautogui.typewrite(['pagedown'])
         
@@ -49,12 +49,12 @@ def heartSimul(numHeart, numPages):
     cntP = numPages
 
     while heartTotal < cntH and cnt_p < cntP :
-        pyautogui.click((0,0))
+        pyautogui.click((10,0))
   
   
 
-        h1 = pyautogui.locateAllOnScreen('images/nH.png', confidence = confidenceVal)
-        h2 = pyautogui.locateAllOnScreen('images/nHH.png', confidence = confidenceVal)   
+        h1 = pyautogui.locateAllOnScreen('images/USE/nH.png', confidence = confidenceVal)
+        h2 = pyautogui.locateAllOnScreen('images/USE/nHH.png', confidence = confidenceVal)   
 
         hrt = list(h1) + list(h2)
         hrt.sort(key=lambda x:x[1])
@@ -67,7 +67,7 @@ def heartSimul(numHeart, numPages):
             time.sleep(random.random()) #0과 1사이값
             heartTotal += 1   
 
-        pyautogui.click((2,50))
+        pyautogui.click((10,200))
         time.sleep(0.2)
         pyautogui.typewrite(['pagedown'])
         

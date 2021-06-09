@@ -2,6 +2,7 @@ import pyautogui
 import time
 import NiconClicker
 import Nheart
+import os
 
 from tkinter import *
 import tkinter.ttk as ttk
@@ -9,7 +10,7 @@ pyautogui.FAILSAFE = False
 
 def mult(num1, num2, num3, simul):   
     #전체화면에서 시작 또는 2,10에 브라우저 클릭되게
-    pyautogui.click((2,50))
+    pyautogui.click((10,200))
     time.sleep(0.2)
     pyautogui.hotkey('win','up')
     time.sleep(0.2)
@@ -17,9 +18,9 @@ def mult(num1, num2, num3, simul):
     time.sleep(0.2)
  
     pyautogui.hotkey('alt','space')
-    time.sleep(3)
+    time.sleep(1.5)
     pyautogui.typewrite(['s'])
-    time.sleep(1)
+    time.sleep(1.5)
     for i in range(10):
         pyautogui.typewrite(['right'])
 
@@ -52,7 +53,7 @@ def mult(num1, num2, num3, simul):
         else:
             history[i] = Nheart.heart(heartMax,pgMax)
 
-        pyautogui.click((2,50))
+        pyautogui.click((10,200))
         pyautogui.hotkey('ctrl','w')
 
 
@@ -69,10 +70,31 @@ def okClickSimul():
     num3 = int(combxP.get())
     mult(num1, num2, num3,True)
 
+def okClickImage1(): #집컴 home
+    pathHome = os.path.realpath('images/home') 
+    path = os.path.realpath('images')
+
+    os.startfile(pathHome)
+def okClickImage2(): #원장실 one
+    pathOne = os.path.realpath('images/one') 
+    path = os.path.realpath('images')
+    os.startfile(path)
+def okClickImage3(): #원장실sub
+    pathOneSub = os.path.realpath('images/oneSub') 
+    path = os.path.realpath('images')
+    os.startfile(path)
+
 win = Tk()
-win.geometry("300x250+1300+100")
+win.geometry("300x300+1300+100")
 win.resizable(False,False)
 win.title("execute")
+
+btn3 = Button(win, text = "***이미지수정***집pc", overrelief="solid", width=30, command=okClickImage1)
+btn3.pack()
+btn4 = Button(win, text = "***이미지수정***원장실", overrelief="solid", width=30, command=okClickImage2)
+btn4.pack()
+btn5 = Button(win, text = "***이미지수정***원장실sub", overrelief="solid", width=30, command=okClickImage3)
+btn5.pack()
 
 label=Label(win, text="작업대상 웹페이지 수 선택")
 label.pack()

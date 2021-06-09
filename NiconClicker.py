@@ -5,17 +5,17 @@ def icon():
 
     cnt = 0
     cntMax = 3
-    confidenceVal = 0.95
+    confidenceVal = 0.98
 
-    pyautogui.click((2,50))
+    pyautogui.click((10,200))
     time.sleep(0.2)
     pyautogui.typewrite(['home'])
 
     while cnt< cntMax:
-        pyautogui.click((0,0))
+        pyautogui.click((10,0))
 
-        lstIcon = pyautogui.locateOnScreen('images/nListIcon.png', confidence = confidenceVal)
-        lstIconB = pyautogui.locateOnScreen('images/nListIconB.png', confidence = confidenceVal)
+        lstIcon = pyautogui.locateCenterOnScreen('images/USE/nListIcon.png', confidence = confidenceVal)
+        lstIconB = pyautogui.locateCenterOnScreen('images/USE/nListIconB.png', confidence = confidenceVal)
         
    
         if(lstIcon):
@@ -25,7 +25,7 @@ def icon():
         if(lstIconB):        
             break
         
-        pyautogui.click((2,50))
+        pyautogui.click((10,200))
         time.sleep(0.2)
         pyautogui.typewrite(['pagedown'])
         cnt += 1
