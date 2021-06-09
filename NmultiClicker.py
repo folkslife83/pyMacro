@@ -4,6 +4,7 @@ import datetime
 import NiconClicker
 import Nheart
 import os
+import shutil
 
 from tkinter import *
 import tkinter.ttk as ttk
@@ -82,17 +83,26 @@ def okClickSimul():
 
 def okClickImage1(): #집컴 home
     pathHome = os.path.realpath('images/home') 
-    path = os.path.realpath('images')
+    path = os.path.realpath('images/USE')
+    files = os.listdir(pathHome)
+    for file in files:
+        shutil.copyfile(pathHome+'/'+file, path+'/'+file)
 
-    os.startfile(pathHome)
 def okClickImage2(): #원장실 one
     pathOne = os.path.realpath('images/one') 
-    path = os.path.realpath('images')
-    os.startfile(path)
+    path = os.path.realpath('images/USE')
+    files = os.listdir(pathOne)
+    for file in files:
+        shutil.copyfile(pathOne+'/'+file, path+'/'+file)
+
+
 def okClickImage3(): #원장실sub
     pathOneSub = os.path.realpath('images/oneSub') 
-    path = os.path.realpath('images')
-    os.startfile(path)
+    path = os.path.realpath('images/USE')
+    files = os.listdir(pathOneSub)
+    for file in files:
+        shutil.copyfile(pathOneSub+'/'+file, path+'/'+file)
+
 
 win = Tk()
 win.geometry("300x300+1300+100")
