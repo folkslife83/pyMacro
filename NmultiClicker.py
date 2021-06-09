@@ -5,11 +5,11 @@ import Nheart
 
 from tkinter import *
 import tkinter.ttk as ttk
-
+pyautogui.FAILSAFE = False
 
 def mult(num1, num2, num3, simul):   
     #전체화면에서 시작 또는 2,10에 브라우저 클릭되게
-    pyautogui.click((1,5))
+    pyautogui.click((2,50))
     time.sleep(0.2)
     pyautogui.hotkey('win','up')
     time.sleep(0.2)
@@ -17,9 +17,9 @@ def mult(num1, num2, num3, simul):
     time.sleep(0.2)
  
     pyautogui.hotkey('alt','space')
-    time.sleep(1)
+    time.sleep(3)
     pyautogui.typewrite(['s'])
-    time.sleep(0.2)
+    time.sleep(1)
     for i in range(10):
         pyautogui.typewrite(['right'])
 
@@ -27,9 +27,9 @@ def mult(num1, num2, num3, simul):
     pyautogui.typewrite(['enter'])
 
     pyautogui.hotkey('alt','space')
-    time.sleep(1)
+    time.sleep(3)
     pyautogui.typewrite(['m'])
-    time.sleep(0.2)
+    time.sleep(1)
     pyautogui.hotkey('ctrl','down')
     pyautogui.hotkey('ctrl','down')
     pyautogui.hotkey('ctrl','down')
@@ -52,7 +52,7 @@ def mult(num1, num2, num3, simul):
         else:
             history[i] = Nheart.heart(heartMax,pgMax)
 
-        pyautogui.click((1,5))
+        pyautogui.click((2,50))
         pyautogui.hotkey('ctrl','w')
 
 

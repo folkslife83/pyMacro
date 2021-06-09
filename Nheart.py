@@ -1,7 +1,7 @@
 import pyautogui
 import time
 import random
-
+pyautogui.FAILSAFE = False
 
 def heart(numHeart, numPages):
     
@@ -12,7 +12,7 @@ def heart(numHeart, numPages):
     cntP = numPages
 
     while heartTotal < cntH and cnt_p < cntP :
-        pyautogui.click((1,1))
+        pyautogui.click((0,0))
   
   
 
@@ -30,7 +30,7 @@ def heart(numHeart, numPages):
             time.sleep(random.random()) #0과 1사이값
             heartTotal += 1   
 
-        pyautogui.click((2,10))
+        pyautogui.click((2,50))
         time.sleep(0.2)
         pyautogui.typewrite(['pagedown'])
         
@@ -49,7 +49,7 @@ def heartSimul(numHeart, numPages):
     cntP = numPages
 
     while heartTotal < cntH and cnt_p < cntP :
-        pyautogui.click((1,1))
+        pyautogui.click((0,0))
   
   
 
@@ -67,7 +67,7 @@ def heartSimul(numHeart, numPages):
             time.sleep(random.random()) #0과 1사이값
             heartTotal += 1   
 
-        pyautogui.click((2,10))
+        pyautogui.click((2,50))
         time.sleep(0.2)
         pyautogui.typewrite(['pagedown'])
         
