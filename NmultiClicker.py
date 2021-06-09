@@ -61,7 +61,11 @@ def mult(num1, num2, num3, simul):
 
     
     now = datetime.datetime.today()
-    fname = now.strftime('%Y-%m-%d-%H%M%S') + ".txt"
+    fname = now.strftime('%Y-%m-%d-%H%M%S')
+    if simul:
+        fname = fname + "SIMULATION.txt"
+    else:
+        fname = fname + ".txt"
     f=open("click_given/"+fname, 'w',encoding="UTF8")
     lst = list(history.keys())
 

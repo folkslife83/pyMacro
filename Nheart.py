@@ -27,7 +27,7 @@ def heart(numHeart, numPages):
             #pyautogui.moveTo(h)
             pyautogui.click(h)
             time.sleep(random.random()) #0과 1사이값
-            time.sleep(random.random()) #0과 1사이값
+            #time.sleep(random.random()) #0과 1사이값
             heartTotal += 1   
 
         pyautogui.click((10,200))
@@ -64,7 +64,7 @@ def heartSimul(numHeart, numPages):
             pyautogui.moveTo(h)
             #pyautogui.click(h)
             time.sleep(random.random()) #0과 1사이값
-            time.sleep(random.random()) #0과 1사이값
+            #time.sleep(random.random()) #0과 1사이값
             heartTotal += 1   
 
         pyautogui.click((10,200))
