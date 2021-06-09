@@ -39,14 +39,16 @@ def icon():
         
    
         if(lstIcon):
-            pyautogui.click(lstIcon)                    
+            pyautogui.click(lstIcon)
+            time.sleep(0.2)                    
             break        
 
-        if(lstIconB):        
+        if(lstIconB):
+            time.sleep(0.2)        
             break
         
         pyautogui.click((10,200))
-        time.sleep(0.2)
+        time.sleep(0.5)
         pyautogui.typewrite(['pagedown'])
         cnt += 1
     return id[-1]

@@ -5,6 +5,7 @@ import NiconClicker
 import Nheart
 import os
 import shutil
+import sys
 
 from tkinter import *
 import tkinter.ttk as ttk
@@ -36,13 +37,25 @@ def mult(num1, num2, num3, simul):
     pyautogui.hotkey('ctrl','down')
     pyautogui.hotkey('ctrl','down')
     pyautogui.hotkey('ctrl','down')
-    time.sleep(0.2)
+    time.sleep(0.5)
     pyautogui.typewrite(['enter'])
 
     time.sleep(0.2)
 
     pyautogui.typewrite(['home'])
-    time.sleep(0.2)
+    
+    
+
+    keepGoing = Tk()
+    keepGoing.geometry("300x150+1000+100")
+    keepGoing.title("창 위치조정이 완료 되었습니까?")
+
+    btOK = Button(keepGoing, text = "OK", command=winOK)
+    btFail = Button(keepGoing, text = "FAIL", command=winFail)
+    btOK.pack()
+    btFail.pack()
+    input("Please press the Enter key to proceed") #cmd 창에 엔터 눌러야 이어지는 문제
+
     nPages = num1
     heartMax = num2
     pgMax = num3 #맥스 활동량, 클릭, pgdn 합계
@@ -73,17 +86,25 @@ def mult(num1, num2, num3, simul):
         f.write(str(lst[i]) + "="+str(history[lst[i]])+ "\n")
     f.close()
 
+
+  
+
+def winOK():
+    return True
+def winFail():
+    sys.exit("기존 프로그램 탐색-종료후 재실행")
+    
 def okClick():
     num1 = int(combx.get())
     num2 = int(combxH.get())
     num3 = int(combxP.get())
-    mult(num1, num2, num3,False)
+    mult(num1, num2, num3,False)        
 
 def okClickSimul():
     num1 = int(combx.get())
     num2 = int(combxH.get())
     num3 = int(combxP.get())
-    mult(num1, num2, num3,True)
+    mult(num1, num2, num3, True)    
 
 def okClickImage1(): #집컴 home
     pathHome = os.path.realpath('images/home') 
@@ -113,8 +134,8 @@ win.geometry("500x500+1300+100")
 win.resizable(True,True)
 win.title("execute")
 
-label=Label(win, text="*Chrome 가장왼쪽모니터 전체화면")
-label.pack()
+label1=Label(win, text="*Chrome 가장왼쪽모니터 전체화면")
+label1.pack()
 
 btn3 = Button(win, text = "***이미지수정***집pc", overrelief="solid", width=30, command=okClickImage1)
 btn3.pack()
@@ -123,8 +144,8 @@ btn4.pack()
 btn5 = Button(win, text = "***이미지수정***원장실sub", overrelief="solid", width=30, command=okClickImage3)
 btn5.pack()
 
-label=Label(win, text="작업대상 웹페이지 수 선택")
-label.pack()
+label2=Label(win, text="작업대상 웹페이지 수 선택")
+label2.pack()
 
 val = [str(i) for i in (1,5,10,30, 50, 100, 200, 500)]
 combx = ttk.Combobox(win, height=5, values=val)
@@ -133,24 +154,24 @@ combx.pack()
 
 
 
-label=Label(win, text="좋아요 최대 클릭수")
-label.pack()
+label3=Label(win, text="좋아요 최대 클릭수")
+label3.pack()
 
 valH = [str(i) for i in (1,3,5, 10)]
 combxH = ttk.Combobox(win, height=5, values=valH)
 combxH.set(3)
 combxH.pack()
 
-label=Label(win, text="탐색 페이지 수")
-label.pack()
+label4=Label(win, text="탐색 페이지 수")
+label4.pack()
 
 valP = [str(i) for i in (1,3,5, 10,30)]
 combxP = ttk.Combobox(win, height=5, values=valP)
 combxP.set(5)
 combxP.pack()
 
-btn = Button(win, text = "실행", overrelief="solid", width=15, command=okClick)
-btn.pack()
+btn1 = Button(win, text = "실행", overrelief="solid", width=15, command=okClick)
+btn1.pack()
 
 btn2 = Button(win, text = "모의탐색", overrelief="solid", width=15, command=okClickSimul)
 btn2.pack()
