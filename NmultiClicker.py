@@ -1,5 +1,6 @@
 import pyautogui
 import time
+import datetime
 import NiconClicker
 import Nheart
 import os
@@ -41,22 +42,31 @@ def mult(num1, num2, num3, simul):
 
     pyautogui.typewrite(['home'])
     time.sleep(0.2)
+    nPages = num1
     heartMax = num2
     pgMax = num3 #맥스 활동량, 클릭, pgdn 합계
     history = {}
 
-    for i in range(num1):       #  i는 key, 나주에 id 값으로 바꿀것
-        NiconClicker.icon()
+    for i in range(nPages):       #  i는 key, 나주에 id 값으로 바꿀것
+        id=NiconClicker.icon()
         time.sleep(1)
         if simul:
-            history[i] = Nheart.heartSimul(heartMax,pgMax)
+            history[id] = Nheart.heartSimul(heartMax,pgMax)
         else:
-            history[i] = Nheart.heart(heartMax,pgMax)
+            history[id] = Nheart.heart(heartMax,pgMax)
 
         pyautogui.click((10,200))
         pyautogui.hotkey('ctrl','w')
 
+    
+    now = datetime.datetime.today()
+    fname = now.strftime('%Y-%m-%d-%H%M%S') + ".txt"
+    f=open("click_given/"+fname, 'w',encoding="UTF8")
+    lst = list(history.keys())
 
+    for i in reversed(range(len(lst))):
+        f.write(str(lst[i]) + "="+str(history[lst[i]])+ "\n")
+    f.close()
 
 def okClick():
     num1 = int(combx.get())
@@ -89,6 +99,9 @@ win.geometry("300x300+1300+100")
 win.resizable(False,False)
 win.title("execute")
 
+label=Label(win, text="*Chrome 가장왼쪽모니터 전체화면")
+label.pack()
+
 btn3 = Button(win, text = "***이미지수정***집pc", overrelief="solid", width=30, command=okClickImage1)
 btn3.pack()
 btn4 = Button(win, text = "***이미지수정***원장실", overrelief="solid", width=30, command=okClickImage2)
@@ -101,7 +114,7 @@ label.pack()
 
 val = [str(i) for i in (1,5,10,30, 50, 100, 200, 500)]
 combx = ttk.Combobox(win, height=5, values=val)
-combx.set(2)
+combx.set(200)
 combx.pack()
 
 
@@ -111,7 +124,7 @@ label.pack()
 
 valH = [str(i) for i in (1,3,5, 10)]
 combxH = ttk.Combobox(win, height=5, values=valH)
-combxH.set(5)
+combxH.set(3)
 combxH.pack()
 
 label=Label(win, text="탐색 페이지 수")
@@ -119,7 +132,7 @@ label.pack()
 
 valP = [str(i) for i in (1,3,5, 10,30)]
 combxP = ttk.Combobox(win, height=5, values=valP)
-combxP.set(10)
+combxP.set(5)
 combxP.pack()
 
 btn = Button(win, text = "실행", overrelief="solid", width=15, command=okClick)
