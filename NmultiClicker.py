@@ -105,8 +105,8 @@ def okClickImage3(): #원장실sub
 
 
 win = Tk()
-win.geometry("300x300+1300+100")
-win.resizable(False,False)
+win.geometry("500x500+1300+100")
+win.resizable(True,True)
 win.title("execute")
 
 label=Label(win, text="*Chrome 가장왼쪽모니터 전체화면")
