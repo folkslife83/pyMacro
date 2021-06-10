@@ -136,6 +136,8 @@ win.title("execute")
 
 label1=Label(win, text="*Chrome 가장왼쪽모니터 전체화면")
 label1.pack()
+label1_1=Label(win, text="***창열기전 네이버로그인필수***")
+label1_1.pack()
 
 btn3 = Button(win, text = "***이미지수정***집pc", overrelief="solid", width=30, command=okClickImage1)
 btn3.pack()
