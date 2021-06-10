@@ -1,14 +1,9 @@
-from tkinter import Tk
+import urllib.request
+from bs4 import BeautifulSoup
+ 
+url = "https://m.blog.naver.com/SympathyHistoryList.naver?blogId=folkslife&logNo=222389312712&categoryId=POST"
+req = urllib.request.Request(url)
+sourcecode = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(sourcecode, "html.parser")
 
-clip = Tk()                        # 창 생성
-clip.withdraw()                  # 창이 보이지 않도록 너비 조정
-
-def a():                           # 편한 사용을 위한 함수1(상용구 느낌)
-    clip.clipboard_clear() 
-    clip.clipboard_append("Copy data 1")
-   
-
-def b():                           # 편한 사용을 위한 함수2(상용구 느낌)
-    clip.clipboard_clear() 
-    clip.clipboard_append("Copy data 2")
-a()
+print(soup.prettify())

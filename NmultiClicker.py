@@ -46,15 +46,14 @@ def mult(num1, num2, num3, simul):
     
     
 
-    keepGoing = Tk()
-    keepGoing.geometry("300x150+1000+100")
-    keepGoing.title("창 위치조정이 완료 되었습니까?")
-
-    btOK = Button(keepGoing, text = "OK", command=winOK)
-    btFail = Button(keepGoing, text = "FAIL", command=winFail)
-    btOK.pack()
-    btFail.pack()
-    input("Please press the Enter key to proceed") #cmd 창에 엔터 눌러야 이어지는 문제
+#    keepGoing = Tk()
+#    keepGoing.geometry("300x150+1000+100")
+#    keepGoing.title("창 위치조정이 완료 되었습니까?")
+#    btOK = Button(keepGoing, text = "OK", command=winOK)
+#    btFail = Button(keepGoing, text = "FAIL", command=winFail)
+#    btOK.pack()
+#    btFail.pack()
+#    input("Please press the Enter key to proceed") #cmd 창에 엔터 눌러야 이어지는 문제
 
     nPages = num1
     heartMax = num2
