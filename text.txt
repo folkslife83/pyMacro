@@ -1,4 +1,7 @@
-folder로 열고 git 업하기 전에 vscode 폴더 지우기
+투명PNG 만들때 포토샵은 비표준
+GIMP 사용 - 이미지 - 도구 - 색상프로필할당 - sRGB built-in으로 선택 - 할당
+
+
 
 구글개발자모드  Console
 var x, y; document.onmousemove=(e)=>{x=e.pageX;y=e.pageY;}
