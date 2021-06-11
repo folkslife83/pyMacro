@@ -6,62 +6,80 @@ import Nheart
 import os
 import shutil
 import sys
-
+import webbrowser
+from sys import exit
 from tkinter import *
 import tkinter.ttk as ttk
 pyautogui.FAILSAFE = False
+from checkBR import brOK, browser
+from openpyxl import load_workbook
 
-def mult(num1, num2, num3, simul):   
-    #전체화면에서 시작 또는 2,10에 브라우저 클릭되게
-    pyautogui.click((10,200))
-    time.sleep(0.2)
-    pyautogui.hotkey('win','up')
-    time.sleep(0.2)
-    pyautogui.hotkey('win','left')
-    time.sleep(0.2)
- 
-    pyautogui.hotkey('alt','space')
-    time.sleep(1.5)
-    pyautogui.typewrite(['s'])
-    time.sleep(1.5)
-    for i in range(10):
-        pyautogui.typewrite(['right'])
-
-    time.sleep(0.2)
-    pyautogui.typewrite(['enter'])
-
-    pyautogui.hotkey('alt','space')
-    time.sleep(3)
-    pyautogui.typewrite(['m'])
-    time.sleep(1)
-    pyautogui.hotkey('ctrl','down')
-    pyautogui.hotkey('ctrl','down')
-    pyautogui.hotkey('ctrl','down')
+def mult(num1, num2, num3,num4, simul):    
+    url = ("https://m.blog.naver.com/folkslife")
+    webbrowser.open(url)  
     time.sleep(0.5)
-    pyautogui.typewrite(['enter'])
+    browser()
+    brOK()
 
-    time.sleep(0.2)
-
-    pyautogui.typewrite(['home'])
+    #nPages = num1   #창 몇개
+    heartMax = num2 #최대하트수
+    pgMax = num3    #최대 서치다운
+    load_wb = load_workbook("blog_list.xlsm", data_only=True)
+    load_ws = load_wb['list'] #시트 이름으로 불러오기
+    last_row = load_wb.active.max_row
     
+    if num4 < 5:
+        cell1st = 5
+    elif num4> int(last_row):
+        cell1st = int(last_row)
+    else:
+        cell1st = num4  #시작 셀
+    
+    if cell1st+num1 > int(last_row)+1:
+        nPages = int(last_row) - cell1st + 1
+    else:
+        nPages = num1
+   
+
+    aWork = 10      #한번에 작업할 양
+    nWork = nPages//aWork
+    extraWork = nPages%aWork
+    
+    lst=[]
+    for i in range(nWork):
+        for k in range(aWork):            
+            url = load_ws.cell(cell1st+i*aWork+k,2).value
+            webbrowser.open(url)     
+        time.sleep(aWork) #웹페이지 1개당 1초 
+        lst += work(aWork, heartMax, pgMax, simul)    
+    for i in range(extraWork):
+        url = load_ws.cell(cell1st+nWork*aWork+i,2).value
+        webbrowser.open(url)
+    time.sleep(extraWork)  #웹페이지 1개당 1초 
+    lst += work(extraWork, heartMax, pgMax, simul)
+    time.sleep(0.2)    
     
 
-#    keepGoing = Tk()
-#    keepGoing.geometry("300x150+1000+100")
-#    keepGoing.title("창 위치조정이 완료 되었습니까?")
-#    btOK = Button(keepGoing, text = "OK", command=winOK)
-#    btFail = Button(keepGoing, text = "FAIL", command=winFail)
-#    btOK.pack()
-#    btFail.pack()
-#    input("Please press the Enter key to proceed") #cmd 창에 엔터 눌러야 이어지는 문제
+    cellLast = cell1st+nPages-1
+    now = datetime.datetime.today()
+    fname = now.strftime('%Y-%m-%d-%H%M%S_'+ str(cellLast) )
+    
+    if simul:
+        fname = fname + "_SIMULATION.txt"
+    else:
+        fname = fname + ".txt"
 
-    nPages = num1
-    heartMax = num2
-    pgMax = num3 #맥스 활동량, 클릭, pgdn 합계
+    f=open("nHgiven/"+fname, 'w',encoding="UTF8")
+    
+    for i in range(len(lst)):
+        f.write(lst[i] + "\n")
+    f.close()
+
+
+def work(nPages, heartMax, pgMax, simul):
     history = {}
-
-    for i in range(nPages):       #  i는 key, 나주에 id 값으로 바꿀것
-        id=NiconClicker.icon()
+    for i in range(nPages):       
+        id=NiconClicker.icon()    
         time.sleep(1)
         if simul:
             history[id] = Nheart.heartSimul(heartMax,pgMax)
@@ -69,25 +87,23 @@ def mult(num1, num2, num3, simul):
             history[id] = Nheart.heart(heartMax,pgMax)
 
         pyautogui.click((10,200))
-        pyautogui.hotkey('ctrl','w')
-
-    
-    now = datetime.datetime.today()
-    fname = now.strftime('%Y-%m-%d-%H%M%S')
-    if simul:
-        fname = fname + "SIMULATION.txt"
-    else:
-        fname = fname + ".txt"
-    f=open("click_given/"+fname, 'w',encoding="UTF8")
+        pyautogui.hotkey('ctrl','w')    
     lst = list(history.keys())
+    lst.reverse()
 
-    for i in reversed(range(len(lst))):
-        f.write(str(lst[i]) + "="+str(history[lst[i]])+ "\n")
+    now = datetime.datetime.today()
+    output = []
+    test = not(simul)
+    fname = now.strftime('%Y-%m-%d-%H%M%S'+ str(test) +'.txt')
+    f=open("nHgiven/temp/"+fname, 'w',encoding="UTF8")
+    for i in range(len(lst)):
+        output.append(str(lst[i]) + "="+str(history[lst[i]])  )
+        f.write(output[i] + "\n")
     f.close()
 
+    return output
 
-  
-
+    
 def winOK():
     return True
 def winFail():
@@ -97,13 +113,17 @@ def okClick():
     num1 = int(combx.get())
     num2 = int(combxH.get())
     num3 = int(combxP.get())
-    mult(num1, num2, num3,False)        
+    num4 = int(combxS.get())
+    
+    mult(num1, num2, num3,num4,False)        
 
 def okClickSimul():
     num1 = int(combx.get())
     num2 = int(combxH.get())
     num3 = int(combxP.get())
-    mult(num1, num2, num3, True)    
+    num4 = int(combxS.get())
+    
+    mult(num1, num2, num3, num4, True)    
 
 def okClickImage1(): #집컴 home
     pathHome = os.path.realpath('images/home') 
@@ -145,12 +165,21 @@ btn4.pack()
 btn5 = Button(win, text = "***이미지수정***원장실sub", overrelief="solid", width=30, command=okClickImage3)
 btn5.pack()
 
+
+label55=Label(win, text="시작 셀 넘버")
+label55.pack()
+
+valS = [str(i) for i in (5, 10,100)]
+combxS = ttk.Combobox(win, height=5, values=valS)
+combxS.set(5)
+combxS.pack()
+
 label2=Label(win, text="작업대상 웹페이지 수 선택")
 label2.pack()
 
 val = [str(i) for i in (1,5,10,30, 50, 100, 200, 500)]
 combx = ttk.Combobox(win, height=5, values=val)
-combx.set(200)
+combx.set(100)
 combx.pack()
 
 
@@ -168,10 +197,13 @@ label4.pack()
 
 valP = [str(i) for i in (1,3,5, 10,30)]
 combxP = ttk.Combobox(win, height=5, values=valP)
-combxP.set(5)
+combxP.set(2)
 combxP.pack()
 
-btn1 = Button(win, text = "실행", overrelief="solid", width=15, command=okClick)
+
+
+
+btn1 = Button(win, text = "실행", background="cornflowerblue",overrelief="solid", width=15, command=okClick)
 btn1.pack()
 
 btn2 = Button(win, text = "모의탐색", overrelief="solid", width=15, command=okClickSimul)

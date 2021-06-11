@@ -1,0 +1,3 @@
+puhahasal=1
+nutz=0
+ehrlich_p=1

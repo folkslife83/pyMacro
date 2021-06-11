@@ -1,0 +1,3 @@
+puhahasal=3
+nutz=2
+ehrlich_p=3
