@@ -102,13 +102,7 @@ def work(nPages, heartMax, pgMax, simul):
     f.close()
 
     return output
-
-    
-def winOK():
-    return True
-def winFail():
-    sys.exit("기존 프로그램 탐색-종료후 재실행")
-    
+   
 def okClick():
     num1 = int(combx.get())
     num2 = int(combxH.get())
