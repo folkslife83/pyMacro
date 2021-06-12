@@ -16,7 +16,7 @@ pyautogui.FAILSAFE = False
 npages = 10 #최대 댓글이 매우 큰 숫자일 경우 높여준다.
 
 left_win = (450,140)
-right_winA = (1100,300)
+right_winA = (1250,300)
 right_winB = (1600,300)
 def get_clipboard():
     root = Tk()
@@ -54,7 +54,7 @@ def count():
     pyautogui.click(button='right')
     time.sleep(1)
     pyautogui.typewrite(['p'])
-    time.sleep(1)
+    time.sleep(2)
     pyautogui.click(right_winB)
     time.sleep(1)    
     pyautogui.hotkey('ctrl','q') 
