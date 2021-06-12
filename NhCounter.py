@@ -15,6 +15,9 @@ pyautogui.FAILSAFE = False
 # 왼쪽 모니터에 100% 배율상태확인
 npages = 10 #최대 댓글이 매우 큰 숫자일 경우 높여준다.
 
+left_win = (450,140)
+right_winA = (1100,300)
+right_winB = (1600,300)
 def get_clipboard():
     root = Tk()
     root.withdraw()
@@ -26,88 +29,71 @@ def get_clipboard():
     return result
 
 
-def open(docNum):
+def opn(docNum):
     url = "https://m.blog.naver.com/SympathyHistoryList.naver?blogId=folkslife&logNo="+ str(docNum) + "&categoryId=POST"
     webbrowser.open(url)
     time.sleep(1)
     
 
 def count():
-    time.sleep(1)
-    pyautogui.click((450,140))
+    time.sleep(0.5)
+    pyautogui.click(left_win)
 
     for i in range(npages):
-        time.sleep(0.5)
+        time.sleep(0.2)
         pyautogui.typewrite(['end'])
-
+    
     time.sleep(0.5)
+    pyautogui.hotkey('ctrl','a') 
+    time.sleep(0.2)
     pyautogui.hotkey('ctrl','c') 
-    time.sleep(0.5)
+    time.sleep(0.2)
 
-    pyautogui.click(1100,300)
+    pyautogui.click(right_winA)
     time.sleep(1)
     pyautogui.click(button='right')
     time.sleep(1)
     pyautogui.typewrite(['p'])
     time.sleep(1)
+    pyautogui.click(right_winB)
+    time.sleep(1)    
     pyautogui.hotkey('ctrl','q') 
     time.sleep(1)
-    pyautogui.click((1600,300))
-    time.sleep(1)
-    pyautogui.typewrite(['space'])
+    pyautogui.hotkey('ctrl','space') 
     time.sleep(1)
     pyautogui.hotkey('ctrl','c') 
     time.sleep(0.5)
 
-    id = get_clipboard().split('\n')
-
+    lst = []
+    id = get_clipboard().split('\n')  #클립보드 텍스트    
+    id =  [v for v in id if v] #빈문자열 제거
+    for i in id[4:]:
+        if i.find('blogId='):
+            lst.append(i)
+    lst2=[]
+    for one in lst:
+        lst2.append(one.split('=')[-1])
+    return set(lst2)
 
     
-
-
-
-    url = ""
-    urlList=[]
-    dup = 0
-    while True:        
-        if url != getUrl():
-            url = get_clipboard()
-            dup = 0
-            time.sleep(0.5)
-            urlList.append(url.split("=")[-1]) 
-            # url예시 https://m.blog.naver.com/PostList.naver?blogId=flush6788
-            time.sleep(1)
-            pyautogui.typewrite(['down'])
-            time.sleep(1)
-
-        elif dup < 2:
-            time.sleep(1)
-            pyautogui.typewrite(['down'])            
-            time.sleep(1)
-            dup += 1
-        
-        else:
-            break
-
-    for i in range (17):
-        pyautogui.move(0,46) #아래로 46px
-        time.sleep(0.2)
-        url = getUrl()
-        time.sleep(0.2)
-        urlList.append(url.split("=")[-1])
-        time.sleep(0.2)   
-    pyautogui.click(50,500)  
+def cls():
+    pyautogui.hotkey('ctrl','a')
+    time.sleep(0.5)
+    pyautogui.typewrite(['del'])
+    time.sleep(0.5)
+    pyautogui.click(right_winB)
     time.sleep(1)
-    pyautogui.hotkey('ctrl','w') 
+    pyautogui.click(left_win)
     time.sleep(1)
-    return set(urlList)   #중복제거, 순서상관없음
+    pyautogui.hotkey('ctrl','w')
+    time.sleep(1)
+    
+    
 
 def okClick():
     num1 = int(input_docNum1.get())
     num2 = int(input_docNum2.get())
-    mult(num1, num2)
 
-def mult(num1, num2):
     url_test = ("https://m.blog.naver.com/folkslife")
     webbrowser.open(url_test)  
     time.sleep(0.5)
@@ -129,35 +115,35 @@ def mult(num1, num2):
         docNum2 = docNum1
     else:
         docNum2 = num2
-    print(lrow)
+    
     for i in range (lrow-4):
         docNum = int(load_ws.cell(i+5,1).value) #글번호
-        print(docNum)
-        
+               
         if docNum > docNum2 :
             continue
         if docNum < docNum1 :
             break
 
         num = (load_ws.cell(i+5,2).value).split('/')[-1]
-        open(num)
-        iDic = {}
-        iDic[docNum] = count()
+        opn(num)
+        output = count()  
+        fname = str(docNum) + ".txt"
+        f=open("nHreceive/"+fname, 'w',encoding="UTF8")
+                
+        for id in output:
+            f.write(id + "\n")
+        f.close()
+        time.sleep(0.5)
+        cls()    
         time.sleep(1)
     
-    kList = iDic.keys()
-    print(kList)
 
-    brB() #브라우저 배율 원복
+    
     time.sleep(1)
     exit()
 
-
-
-            
-
 win = Tk()
-win.geometry("320x150+1300+100")
+win.geometry("320x150+1300+0")
 win.resizable(True,True)
 win.title("H counter")
 
