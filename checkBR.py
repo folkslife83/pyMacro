@@ -57,6 +57,8 @@ def browser():
     time.sleep(1)
     pyautogui.typewrite(['enter'])
     time.sleep(1)
+    pyautogui.typewrite(['enter'])
+    time.sleep(1)
 
     pyautogui.typewrite(['home'])
     
