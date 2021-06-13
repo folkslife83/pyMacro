@@ -1,3 +1,0 @@
-nutz=0
-ehrlich_p=1
-lsysy113=1

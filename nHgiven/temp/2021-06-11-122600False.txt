@@ -1,2 +1,0 @@
-puhahasal=1
-coqls2134=0

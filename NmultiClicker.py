@@ -9,6 +9,7 @@ import sys
 import webbrowser
 from sys import exit
 from tkinter import *
+import tkinter.messagebox
 import tkinter.ttk as ttk
 pyautogui.FAILSAFE = False
 from checkBR import brOK, browser
@@ -45,39 +46,26 @@ def mult(num1, num2, num3,num4, simul):
     nWork = nPages//aWork
     extraWork = nPages%aWork
     
+    cell = cell1st #해당 워크세튼 회차의 첫작업 셀번호
     lst=[]
     for i in range(nWork):
         for k in range(aWork):            
             url = load_ws.cell(cell1st+i*aWork+k,2).value
             webbrowser.open(url)     
-        time.sleep(aWork) #웹페이지 1개당 1초 
-        lst += work(aWork, heartMax, pgMax, simul)    
+        time.sleep(aWork) #웹페이지 1개당 1초         
+        lst += work(aWork, heartMax, pgMax,cell, simul)    
+        cell += aWork  #해당 회차의 첫작업 셀번호
     for i in range(extraWork):
         url = load_ws.cell(cell1st+nWork*aWork+i,2).value
         webbrowser.open(url)
-    time.sleep(extraWork)  #웹페이지 1개당 1초 
-    lst += work(extraWork, heartMax, pgMax, simul)
-    time.sleep(0.2)    
+    time.sleep(extraWork)  #웹페이지 1개당 1초     
+    lst += work(extraWork, heartMax, pgMax,cell, simul)
+    time.sleep(3)   
+    exit() 
     
-
-    cellLast = cell1st+nPages-1
-    now = datetime.datetime.today()
-    fname = now.strftime('%Y-%m-%d-%H%M%S_'+ str(cellLast) )
-    
-    if simul:
-        fname = fname + "_SIMULATION.txt"
-    else:
-        fname = fname + ".txt"
-
-    f=open("nHgiven/"+fname, 'w',encoding="UTF8")
-    
-    for i in range(len(lst)):
-        f.write(lst[i] + "\n")
-    f.close()
-
-
-def work(nPages, heartMax, pgMax, simul):
+def work(nPages, heartMax, pgMax,cell1, simul):
     history = {}
+    cellend = cell1 + nPages -1 #마지막 작업 셀
     for i in range(nPages):       
         id=NiconClicker.icon()    
         time.sleep(1)
@@ -93,9 +81,13 @@ def work(nPages, heartMax, pgMax, simul):
 
     now = datetime.datetime.today()
     output = []
-    test = not(simul)
-    fname = now.strftime('%Y-%m-%d-%H%M%S'+ str(test) +'.txt')
-    f=open("nHgiven/temp/"+fname, 'w',encoding="UTF8")
+    
+    if simul:
+        test = '_SIMULATION.txt'
+    else:
+        test = ".txt"
+    fname = now.strftime('%Y-%m-%d-%H%M%S_'+str(cellend) + str(test) )
+    f=open("nHgiven/"+fname, 'w',encoding="UTF8")
     for i in range(len(lst)):
         output.append(str(lst[i]) + "="+str(history[lst[i]])  )
         f.write(output[i] + "\n")
@@ -125,6 +117,7 @@ def okClickImage1(): #집컴 home
     files = os.listdir(pathHome)
     for file in files:
         shutil.copyfile(pathHome+'/'+file, path+'/'+file)
+    Msgbox1()
 
 def okClickImage2(): #원장실 one
     pathOne = os.path.realpath('images/one') 
@@ -132,7 +125,7 @@ def okClickImage2(): #원장실 one
     files = os.listdir(pathOne)
     for file in files:
         shutil.copyfile(pathOne+'/'+file, path+'/'+file)
-
+    Msgbox1()
 
 def okClickImage3(): #원장실sub
     pathOneSub = os.path.realpath('images/oneSub') 
@@ -140,7 +133,10 @@ def okClickImage3(): #원장실sub
     files = os.listdir(pathOneSub)
     for file in files:
         shutil.copyfile(pathOneSub+'/'+file, path+'/'+file)
+    Msgbox1()
 
+def Msgbox1():
+    tkinter.messagebox.showinfo("Inform","Image files've been copied.")
 
 win = Tk()
 win.geometry("500x500+1300+100")

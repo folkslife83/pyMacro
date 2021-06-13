@@ -1,2 +1,0 @@
-coqls2134=3
-daebang7887=3

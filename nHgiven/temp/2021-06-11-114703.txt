@@ -1,3 +1,0 @@
-fly_net=3
-laon_happy7=0
-mykim3709=1

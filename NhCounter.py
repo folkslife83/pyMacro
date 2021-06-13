@@ -6,6 +6,7 @@ from openpyxl import load_workbook, Workbook
 import webbrowser
 from tkinter import *
 import tkinter.ttk as ttk
+from tkinter import Tk
 from _tkinter import TclError
 import time, ctypes
 from checkBR import brOK
@@ -61,12 +62,33 @@ def count():
     time.sleep(1)
     pyautogui.hotkey('ctrl','space') 
     time.sleep(1)
-    pyautogui.hotkey('ctrl','c') 
+    pyautogui.hotkey('ctrl','c')     
+    time.sleep(3)
+    id = get_clipboard().split('\n')
+    id =  [v for v in id if v] #빈문자열 제거
     time.sleep(0.5)
+    pyautogui.hotkey('ctrl','a')
+    time.sleep(0.5)
+    pyautogui.typewrite(['del'])
+    time.sleep(1)
+    pyautogui.hotkey('ctrl','g')
+    time.sleep(0.5)
+    pyautogui.hotkey('alt','s')
+    time.sleep(0.5)    
+    pyautogui.typewrite(['b'])
+    time.sleep(0.5)
+    pyautogui.typewrite(['enter'])
+    time.sleep(0.5)        
+    pyautogui.typewrite(['del'])
+    time.sleep(0.5)    
+    pyautogui.click(right_winB)
+    time.sleep(1)
+    pyautogui.click(left_win)
+    time.sleep(1)
+    pyautogui.hotkey('ctrl','w')
+    time.sleep(1)
 
     lst = []
-    id = get_clipboard().split('\n')  #클립보드 텍스트    
-    id =  [v for v in id if v] #빈문자열 제거
     for i in id[4:]:
         if i.find('blogId='):
             lst.append(i)
@@ -75,19 +97,7 @@ def count():
         lst2.append(one.split('=')[-1])
     return set(lst2)
 
-    
-def cls():
-    pyautogui.hotkey('ctrl','a')
-    time.sleep(0.5)
-    pyautogui.typewrite(['del'])
-    time.sleep(0.5)
-    pyautogui.click(right_winB)
-    time.sleep(1)
-    pyautogui.click(left_win)
-    time.sleep(1)
-    pyautogui.hotkey('ctrl','w')
-    time.sleep(1)
-    
+
     
 
 def okClick():
@@ -133,8 +143,7 @@ def okClick():
         for id in output:
             f.write(id + "\n")
         f.close()
-        time.sleep(0.5)
-        cls()    
+
         time.sleep(1)
     
 
