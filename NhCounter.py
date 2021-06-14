@@ -9,7 +9,8 @@ from tkinter import Tk
 from _tkinter import TclError
 import time, ctypes
 from checkBR import brOK
-
+import glob
+import os
 pyautogui.FAILSAFE = False
 
 # 네이버 로그인확인
@@ -143,9 +144,11 @@ def okClick():
         output = count()  
         fname = str(docNum) + ".txt"
 
-        name = "C:\\Git\\pyMacro\\iHreceive\\"+ fname
+        path = os.path.dirname(os.path.realpath(__file__))
+        os.chdir(path)
+        name = "C:\\Git\\pyMacro\\nHreceive\\"+ fname
         if os.path.exists(name):
-        os.remove(name)
+            os.remove(name)
 
 
         f=open("nHreceive/"+fname, 'w',encoding="UTF8")
