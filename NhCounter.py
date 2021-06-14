@@ -3,13 +3,13 @@ import time
 import random
 import webbrowser
 from openpyxl import load_workbook, Workbook
-import webbrowser
 from tkinter import *
 import tkinter.ttk as ttk
 from tkinter import Tk
 from _tkinter import TclError
 import time, ctypes
 from checkBR import brOK
+
 pyautogui.FAILSAFE = False
 
 # 네이버 로그인확인
@@ -73,14 +73,18 @@ def count():
     time.sleep(1)
     pyautogui.hotkey('ctrl','g')
     time.sleep(0.5)
-    pyautogui.hotkey('alt','s')
+    pyautogui.typewrite(['tab'])
     time.sleep(0.5)    
+    pyautogui.typewrite(['tab'])
+    time.sleep(0.5)
+    pyautogui.typewrite(['enter'])
+    time.sleep(0.5)            
     pyautogui.typewrite(['b'])
     time.sleep(0.5)
     pyautogui.typewrite(['enter'])
     time.sleep(0.5)        
     pyautogui.typewrite(['del'])
-    time.sleep(0.5)    
+    time.sleep(1)    
     pyautogui.click(right_winB)
     time.sleep(1)
     pyautogui.click(left_win)
@@ -138,6 +142,12 @@ def okClick():
         opn(num)
         output = count()  
         fname = str(docNum) + ".txt"
+
+        name = "C:\\Git\\pyMacro\\iHreceive\\"+ fname
+        if os.path.exists(name):
+        os.remove(name)
+
+
         f=open("nHreceive/"+fname, 'w',encoding="UTF8")
                 
         for id in output:
@@ -145,10 +155,12 @@ def okClick():
         f.close()
 
         time.sleep(1)
+        if docNum < 2 :
+            break
     
 
     
-    time.sleep(1)
+    time.sleep(5)
     exit()
 
 win = Tk()

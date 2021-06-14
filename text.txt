@@ -9,6 +9,8 @@ https://shgl.tistory.com/21
 pip install pyinstaller
 pyinstaller --onefile -w 파일명.py
 pyinstaller --onefile -w NmultiClicker.py
+pyinstaller --onefile -w NhCounter.py
+pyinstaller --onefile -w N_InsHcounter.py
 
 pip install --upgrade pip
 pip install opencv-python
@@ -25,6 +27,10 @@ six
 참고)showWindow
 
  
+엑셀메뉴 편집( or 찾기 선택)에서 '이동' 대화상자를 선택합니다. 단축키 『Ctrl+G』, 『F5』 ...
+『옵션(S)』을 열어 『개체(B)』를 선택하고 『확인』!! ...
+『Delete』~ 한방이면 모든 개체가 삭제됩니다.
+
 
 SW_HIDE 0 보이지 않도록 한다.
 
