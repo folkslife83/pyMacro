@@ -8,8 +8,9 @@ https://shgl.tistory.com/21
 실행파일 만들기
 pip install pyinstaller
 pyinstaller --onefile -w 파일명.py
-pyinstaller --onefile -w NmultiClicker.py
+pyinstaller --onefile -w nListClicker.py
 pyinstaller --onefile -w NhCounter.py
+pyinstaller --onefile -w n_insClicker.py
 pyinstaller --onefile -w N_InsHcounter.py
 
 pip install --upgrade pip

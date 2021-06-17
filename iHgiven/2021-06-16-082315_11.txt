@@ -1,0 +1,1 @@
+cafe.my_romance=0

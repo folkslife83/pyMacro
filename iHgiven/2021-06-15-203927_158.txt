@@ -1,0 +1,1 @@
+monster_travel__20=0

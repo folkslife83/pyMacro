@@ -7,6 +7,7 @@ import os
 import shutil
 import sys
 import webbrowser
+import random
 from sys import exit
 from tkinter import *
 import tkinter.messagebox
@@ -18,6 +19,8 @@ confidenceVal = 0.9
 
 outClick = (10,0)
 inClick = (10,200)
+picClick = (10,600)
+picCenter = (450,450)
 
 def mult(num1, num2, num3,num4):    
     url = ("https://www.instagram.com/")
@@ -34,9 +37,9 @@ def mult(num1, num2, num3,num4):
     #nPages = num1   #창 몇개
     heartMax = num2 #최대하트수
     pgMax = num3    #최대 서치 오른쪽 넘기기
-    load_wb = load_workbook("insta_list.xlsm", data_only=True)
+    load_wb = load_workbook("iList.xlsx", data_only=True)
     load_ws = load_wb['list'] #시트 이름으로 불러오기
-    last_row = load_wb.active.max_row
+    last_row = load_ws.active.max_row
     
     if num4 < 5:
         cell1st = 5
@@ -49,7 +52,8 @@ def mult(num1, num2, num3,num4):
         nPages = int(last_row) - cell1st + 1
     else:
         nPages = num1
-   
+    
+    
     for i in range(nPages):
         id = load_ws.cell(cell1st+i,2).value   
         copy_string = "echo " + id + " |clip"
@@ -60,45 +64,64 @@ def mult(num1, num2, num3,num4):
    
         if(search):
             pyautogui.click(search)
-            time.sleep(0.5)                    
-            break
+            time.sleep(random.random()) #0과 1사이값                 
+
         else:
             continue
 
-        
-        pyautogui.click((10,200))
-        time.sleep(0.5)
-
-
-
-
-        
-
-
-
-    history = {}
-    cellend = cell1 + nPages -1 #마지막 작업 셀
-    for i in range(nPages):       
-        id=NiconClicker.icon()    
+        pyautogui.hotkey('ctrl','v')
         time.sleep(1)
-        history[id] = Nheart.heart(heartMax,pgMax)
+        pyautogui.typewrite(['enter'])
+        time.sleep(2)
+        pyautogui.typewrite(['enter'])
+        time.sleep(2)
+        pyautogui.click(picClick)
+        time.sleep(1)
+        pyautogui.typewrite(['pgdn'])
+        time.sleep(2)
+        time.sleep(random.random()) #0과 1사이값
+        pyautogui.click(picClick)
+        time.sleep(2)
+        time.sleep(random.random()) #0과 1사이값
+        for k in range(6):
+            pyautogui.typewrite(['left'])
+            time.sleep(random.random()) #0과 1사이값
+        cnt =0
+        time.sleep(2)
+        for k in range(pgMax):
+            pyautogui.moveTo(picCenter)
+            time.sleep(0.5)
+            pyautogui.scroll(-10000)
+            time.sleep(0.5)
+            Hempty = pyautogui.locateCenterOnScreen('images/USE/iHb.png', confidence = confidenceVal)
+            #Hfull = pyautogui.locateCenterOnScreen('images/USE/iHr.png', confidence = confidenceVal)
+            if Hempty:
+                pyautogui.click(Hempty)
+                cnt += 1
+                time.sleep(random.random()) #0과 1사이값
+                pyautogui.typewrite(['right'])
+                
+            else:
+                pyautogui.typewrite(['right'])
+        
+        
+        
+        now = datetime.datetime.today()    
+        end = ".txt"
+        fname = now.strftime('%Y-%m-%d-%H%M%S_'+ str(cell1st+i) + end)
+        f=open("iHgiven/"+fname, 'w',encoding="UTF8")
+        f.write(id+"="+str(cnt) + "\n")
+        f.close()
+        time.sleep(random.random()) #0과 1사이값
+        cnt = 0
+        pyautogui.typewrite(['esc'])
+        time.sleep(1) 
 
-        pyautogui.click((10,200))
-        pyautogui.hotkey('ctrl','w')    
-    lst = list(history.keys())
-    lst.reverse()
 
-    now = datetime.datetime.today()
-    output = []
-    test = ".txt"
-    fname = now.strftime('%Y-%m-%d-%H%M%S_'+str(cellend) + str(test) )
-    f=open("nHgiven/"+fname, 'w',encoding="UTF8")
-    for i in range(len(lst)):
-        output.append(str(lst[i]) + "="+str(history[lst[i]])  )
-        f.write(output[i] + "\n")
-    f.close()
+    time.sleep(2)
+    exit()
 
-    return output
+
    
 def okClick():
     num1 = int(combx.get())
@@ -144,7 +167,7 @@ win.title("execute")
 
 label1=Label(win, text="*Chrome 가장왼쪽모니터 전체화면")
 label1.pack()
-label1_1=Label(win, text="***창열기전 네이버로그인필수***")
+label1_1=Label(win, text="***인스타로그인/200%확대확인***")
 label1_1.pack()
 
 btn3 = Button(win, text = "***이미지수정***집pc", overrelief="solid", width=30, command=okClickImage1)

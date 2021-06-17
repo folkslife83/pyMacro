@@ -1,0 +1,1 @@
+clippy.c_eh=0

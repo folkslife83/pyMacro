@@ -1,0 +1,1 @@
+harami_shop=0

@@ -1,0 +1,1 @@
+es_spo_nanum=0
