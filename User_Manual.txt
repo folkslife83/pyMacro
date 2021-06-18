@@ -1,0 +1,8 @@
+1. 사용전 blog_list.xlsm 파일의 내보내기 기능으로 nList 만들기
+2. NListClicker_V1_1.exe 실행
+3. NhCounter.exe 실행시 hLink.xlsm 파일 실행. 좌측 모니터에 배치
+4. nHgiven 은 blog_list.xlsm 에서 불러오기 하고 나면 누적됨. 
+   불러오기 후 삭제 권장. 
+   한달 또는 두달 단위로 공급 열을 다른 열로 백업시키고 
+   0로 다시시작하는것 권장. 
+5. Ngiven_merge 필요 없음

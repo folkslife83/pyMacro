@@ -31,12 +31,6 @@ def get_clipboard():
     return result
 
 
-def opn(docNum):
-    url = "https://m.blog.naver.com/SympathyHistoryList.naver?blogId=folkslife&logNo="+ str(docNum) + "&categoryId=POST"
-    webbrowser.open(url)
-    time.sleep(1)
-    
-
 def count():
     time.sleep(0.5)
     pyautogui.click(left_win)
@@ -114,9 +108,9 @@ def okClick():
     time.sleep(0.5)
     brOK()
 
-    load_wb = load_workbook("blog_list.xlsm", data_only=True)
+    load_wb = load_workbook("nList.xlsx", data_only=True)
     load_ws = load_wb['name'] #시트 이름으로 불러오기
-    last_row = load_wb.active.max_row
+    last_row = load_ws.max_row
     lrow = int(last_row)
 
     if num1 < 1:                    #시작글번호
@@ -129,8 +123,8 @@ def okClick():
     if  docNum1 > num2: 
         docNum2 = docNum1
     else:
-        docNum2 = num2
-    
+        docNum2 = num2    
+
     for i in range (lrow-4):
         docNum = int(load_ws.cell(i+5,1).value) #글번호
                
@@ -139,8 +133,11 @@ def okClick():
         if docNum < docNum1 :
             break
 
-        num = (load_ws.cell(i+5,2).value).split('/')[-1]
-        opn(num)
+        num = (load_ws.cell(i+5,2).value).split('/')[-1]        
+        url = "https://m.blog.naver.com/SympathyHistoryList.naver?blogId=folkslife&logNo="+ str(num) + "&categoryId=POST"
+        webbrowser.open(url)
+        time.sleep(1)    
+        
         output = count()  
         fname = str(docNum) + ".txt"
 
@@ -151,7 +148,7 @@ def okClick():
             os.remove(name)
 
 
-        f=open("nHreceive/"+fname, 'w',encoding="UTF8")
+        f=open("C:\\Git\\pyMacro\\nHreceive\\"+fname, 'w',encoding="UTF8")
                 
         for id in output:
             f.write(id + "\n")
@@ -160,8 +157,6 @@ def okClick():
         time.sleep(1)
         if docNum < 2 :
             break
-    
-
     
     time.sleep(5)
     exit()

@@ -39,7 +39,7 @@ def mult(num1, num2, num3,num4):
     pgMax = num3    #최대 서치 오른쪽 넘기기
     load_wb = load_workbook("iList.xlsx", data_only=True)
     load_ws = load_wb['list'] #시트 이름으로 불러오기
-    last_row = load_ws.active.max_row
+    last_row = load_ws.max_row
     
     if num4 < 5:
         cell1st = 5

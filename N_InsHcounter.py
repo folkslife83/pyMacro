@@ -49,7 +49,7 @@ def okClick():
 
     load_wb = load_workbook("insta_list.xlsm", data_only=True)
     load_ws = load_wb['name'] #시트 이름으로 불러오기
-    last_row = load_wb.active.max_row
+    last_row = load_ws.max_row
     lrow = int(last_row)
 
     if num1 < 1:                    #시작글번호

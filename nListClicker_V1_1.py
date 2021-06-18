@@ -16,11 +16,7 @@ from checkBR import brOK, browser
 from openpyxl import load_workbook
 
 def mult(num1, num2, num3,num4):    
-    url = ("https://m.blog.naver.com/folkslife")
-    webbrowser.open(url)  
-    time.sleep(0.5)
-    browser()
-    brOK()
+
 
     #nPages = num1   #창 몇개
     heartMax = num2 #최대하트수
@@ -28,7 +24,7 @@ def mult(num1, num2, num3,num4):
     #load_wb = load_workbook("blog_list.xlsm", data_only=True)
     load_wb = load_workbook("nList.xlsx", data_only=True)
     load_ws = load_wb['list'] #시트 이름으로 불러오기
-    last_row = load_wb.active.max_row
+    last_row = load_ws.max_row    
     
     if num4 < 5:
         cell1st = 5
@@ -53,7 +49,7 @@ def mult(num1, num2, num3,num4):
         for k in range(aWork):            
             url = load_ws.cell(cell1st+i*aWork+k,2).value
             webbrowser.open(url)     
-        time.sleep(aWork) #웹페이지 1개당 1초         
+        time.sleep(aWork//2) #웹페이지 1개당 0.5초         
         lst += work(aWork, heartMax, pgMax,cell)    
         cell += aWork  #해당 회차의 첫작업 셀번호
     for i in range(extraWork):
@@ -62,7 +58,7 @@ def mult(num1, num2, num3,num4):
     time.sleep(extraWork)  #웹페이지 1개당 1초     
     lst += work(extraWork, heartMax, pgMax,cell)
     time.sleep(3)   
-    exit() 
+
     
 def work(nPages, heartMax, pgMax,cell1):
     history = {}
@@ -97,10 +93,19 @@ def okClick():
     
     work1 = num1 // 1000 #1000개 단위로 실행
     extraWork = num1 % 1000
+    
+    url = ("https://m.blog.naver.com/folkslife")
+    webbrowser.open(url)  
+    time.sleep(0.5)
+    browser()
+    brOK()
+
     for i in range(work1):
         mult(1000, num2, num3,num4 + 1000*i)
     
     mult(extraWork, num2, num3,num4 + 1000*work1)
+    time.sleep(3)
+    exit()
 
 
 def okClickImage1(): #집컴 home
