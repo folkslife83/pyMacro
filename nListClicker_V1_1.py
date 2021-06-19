@@ -166,7 +166,7 @@ label2.pack()
 
 val = [str(i) for i in (1,5,10,30, 50, 100, 200, 500)]
 combx = ttk.Combobox(win, height=5, values=val)
-combx.set(100)
+combx.set(5000)
 combx.pack()
 
 
