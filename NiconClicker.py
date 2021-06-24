@@ -22,7 +22,7 @@ def icon():
     confidenceVal = 0.98
 
     pyautogui.click((200,60)) #크롬 웹브라우저 주소창 높이 
-    time.sleep(1.5)
+    time.sleep(1)
     pyautogui.hotkey('ctrl','c')
     time.sleep(0.2)
     id = get_clipboard().split('/')  #클립보드 텍스트    

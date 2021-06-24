@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ng-blog-317512",
+  "private_key_id": "b8224aefca453107b464ee00daafe08833b1d6fd",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDv7j0hs9CQ6Z7D\n8MQjsx05sntI9TdRmERfJK9nAkCX85ltAs7hvwETdxs00fcQK7Br3QAhMNYlXYWE\nUmfQ9DcDzHHbb+EGXv/2iwoyDoLgivii2aHB4dvO0HyEQNOyyDdxeZb61ENPew1z\n11ecUBXba9BdcvCeYRSI+I62cLB9wAk8vucHQT3IiPnw4I5s+lhyPZ4mNLGie4gn\n1z9BaPv4K6fD35I4t55ikm/uHQadSX3hsGfm0+oq3+3v9powlJm49evvMrhD+30+\n3rUNlSs2HhPKsb12bQiYzeZf4Dp1CW6/fa/c41iV7qcsXrnHaiImEqXamumWF0Ka\ngYfQc2QJAgMBAAECggEAAZg1hSILBiRq5F7sYJBcn5WKv8TvqS64GvDhsm9WuwEh\nrMtZwtuncp8A6fOe1hA7YUM/ok4rc4JYDUO+8HEEZXktelDCQabOM8xf36ODt5pR\nSSdXWFC/Ea0/QwxrP1Ff/ru8lSOCOa3kIBuh1Bge1C2aXcu8320JTQNLqGcwNt6c\nkGenBYmHhltmcq4Ps7xLeoInLoSVM1Cn7ua7+seMJl8mLGj7EalPRSRS5ZBQLi6O\n81/zxKMNQRTJI5ndXIFgvERMEpmDbE9S6+KxkZZ/pQd48iin5I7NQojM2qTchxe/\nP8aKIEFx6QDwkaYOchdR7+wHaJwWPcxpFltnP3fAAQKBgQD6N/khzUcNj9KaFjRq\n94AWQASVj/LL5lzcBS0N0PelZ8fdbP7bFMYLmE12Fn1Gsopp6Tgd/TF0jUyP1vID\nbC8iNbRG05xYwHmQBHBwEz1P2dj+nsN3He6v6m+qO9TtYcRZEYdst+43oVgl7Hi/\nikHnQBc9XPiQ4lKTuBOHWBafgQKBgQD1eWmiTo0n7dmwZRVRbFYmKjXzS2ykfR5U\nn8p1g0SDrDr67MuZ5c+W1b2jkt0oPxRa7qps1Ohmpcff9dDSwwwutZaayORV0lmg\nobXGHlpEY5Sj4uQv82IcVitk9Q9x71ITWQ6+oMTV2dXXf+wxAmOC61to5ijEyTKH\npDsqJVwIiQKBgA70e3put3lzCCZXf2iJRGmQB/YcdWmEajZoRMoXnEWRj1uHoS/c\n7P1SbAbLz08DasxruQPp1yPdMh9CvJJBzAtiZFT7XtPbJSjbaxD3xWlZXuPQ/2PG\nMTbobyYgj1hkyIR+TLbNw3oltYwGtyzTiZ7VsM3lGaInNMJJdTlYpXmBAoGBANaL\nEg8gdnCiinOINXSfqj/a/qIwlrjA/gRaUDoay4QFwNrUoTJVz/R1xTQ0xQRK9YBw\nPhW2k5Q7apDMqIG8pWYhoYqQ8DguC9W/4D5TAvPo0N3YDTX3kxVPHsgzAxfCYkq0\nuJVVsBN0O1kI3icLfmvLRm5NUu6DJp20pV01n9V5AoGBAMj8Dv1RIVySvIcHAaKR\nmrcm+zb5bSfkfr32cLzlEqdqBli+GvYp/Oa6hKizMcu/bsbwURqTeTGqfMEsvusG\nEM8A/ALkILUiO141qsQ9wjNLWl8+2PJWFZdxvuKXfQBbXgr+2ByQSAAT4PgcA3GB\nSGIKp56hMERMZkA7R/cDFbrg\n-----END PRIVATE KEY-----\n",
+  "client_email": "folkslife@ng-blog-317512.iam.gserviceaccount.com",
+  "client_id": "108421850368449456417",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/folkslife%40ng-blog-317512.iam.gserviceaccount.com"
+}
